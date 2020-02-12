@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator
 # Create your models here.
 
 
@@ -19,3 +20,4 @@ class House(models.Model):
     owner = models.ForeignKey(User,on_delete=models.CASCADE,related_name="houses")
     address = models.TextField()
     facilities = models.ManyToManyField(Facility,related_name="facilities")
+    value = models.FloatField(null=True,validators=[MinValueValidator(0)])
